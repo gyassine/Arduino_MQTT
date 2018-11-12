@@ -1,0 +1,387 @@
+[
+    {
+        "id": "798f513a.e8a04",
+        "type": "tab",
+        "label": "Mon 1er flow",
+        "disabled": false,
+        "info": "Flow de test pour :\n- Récupérer une donnée MQTT et afficher\n- Envoyer une valeur par MQTT"
+    },
+    {
+        "id": "57a9ca2c.283154",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Verdana,Verdana,Geneva,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Verdana,Verdana,Geneva,sans-serif"
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "106a0892.4df7b7",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Ecran principale",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "8e831ec7.d81eb",
+        "type": "ui_group",
+        "z": "",
+        "name": "Flux reçus",
+        "tab": "106a0892.4df7b7",
+        "order": 1,
+        "disp": true,
+        "width": "17",
+        "collapse": false
+    },
+    {
+        "id": "279e1ad8.ebeae6",
+        "type": "ui_group",
+        "z": "",
+        "name": "Envoie infos",
+        "tab": "106a0892.4df7b7",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "f460a0.8fc35f6",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Mon Broker",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "503ea954.5b97c8",
+        "type": "ui_switch",
+        "z": "798f513a.e8a04",
+        "name": "NetwEmul ON/OFF switch",
+        "label": "NetwEmul ON/OFF switch",
+        "group": "279e1ad8.ebeae6",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "switch",
+        "style": "",
+        "onvalue": "ON",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "OFF",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 188,
+        "y": 176,
+        "wires": [
+            [
+                "8495340b.8c7758"
+            ]
+        ]
+    },
+    {
+        "id": "e98fe402.458458",
+        "type": "ui_text",
+        "z": "798f513a.e8a04",
+        "group": "8e831ec7.d81eb",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Valeur actuelle",
+        "label": "Valeur Actuelle",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 480,
+        "y": 443,
+        "wires": []
+    },
+    {
+        "id": "9878823e.bbfaa",
+        "type": "mqtt in",
+        "z": "798f513a.e8a04",
+        "name": "Lecture de SolarPan",
+        "topic": "SolarPan/feeds/numbers",
+        "qos": "2",
+        "broker": "f460a0.8fc35f6",
+        "x": 151,
+        "y": 479,
+        "wires": [
+            [
+                "e98fe402.458458",
+                "a63e7897.d1d608"
+            ]
+        ]
+    },
+    {
+        "id": "8495340b.8c7758",
+        "type": "mqtt out",
+        "z": "798f513a.e8a04",
+        "name": "Envoie vers NetwEmul/feeds/onoff",
+        "topic": "NetwEmul/feeds/onoff",
+        "qos": "",
+        "retain": "",
+        "broker": "f460a0.8fc35f6",
+        "x": 502,
+        "y": 178,
+        "wires": []
+    },
+    {
+        "id": "a63e7897.d1d608",
+        "type": "ui_chart",
+        "z": "798f513a.e8a04",
+        "name": "Ensoleillement",
+        "group": "8e831ec7.d81eb",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Ensoleillement",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 472,
+        "y": 506,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c447fb5f.ce5208",
+        "type": "ui_switch",
+        "z": "798f513a.e8a04",
+        "name": "CtrlLoad ON/OFF switch",
+        "label": "CtrlLoad ON/OFF switch",
+        "group": "279e1ad8.ebeae6",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "switch",
+        "style": "",
+        "onvalue": "ON",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "OFF",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 178,
+        "y": 243,
+        "wires": [
+            [
+                "4096fa94.514d14"
+            ]
+        ]
+    },
+    {
+        "id": "4096fa94.514d14",
+        "type": "mqtt out",
+        "z": "798f513a.e8a04",
+        "name": "Envoie vers CtrlLoad/feeds/onoff",
+        "topic": "CtrlLoad/feeds/onoff",
+        "qos": "",
+        "retain": "",
+        "broker": "f460a0.8fc35f6",
+        "x": 502,
+        "y": 245,
+        "wires": []
+    },
+    {
+        "id": "33ce16a5.0352ca",
+        "type": "mqtt in",
+        "z": "798f513a.e8a04",
+        "name": "Lecture de NetwEmul",
+        "topic": "NetwEmul/feeds/numbers",
+        "qos": "2",
+        "broker": "f460a0.8fc35f6",
+        "x": 159,
+        "y": 552,
+        "wires": [
+            [
+                "f185a9c5.e05d98"
+            ]
+        ]
+    },
+    {
+        "id": "6020fc0e.f19df4",
+        "type": "mqtt in",
+        "z": "798f513a.e8a04",
+        "name": "Lecture de CtrlLoad",
+        "topic": "CtrlLoad/feeds/numbers",
+        "qos": "2",
+        "broker": "f460a0.8fc35f6",
+        "x": 148,
+        "y": 624,
+        "wires": [
+            [
+                "f185a9c5.e05d98"
+            ]
+        ]
+    },
+    {
+        "id": "f185a9c5.e05d98",
+        "type": "ui_chart",
+        "z": "798f513a.e8a04",
+        "name": "Valeur du courant",
+        "group": "8e831ec7.d81eb",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Valeur du courant",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 486,
+        "y": 599,
+        "wires": [
+            [],
+            []
+        ]
+    }
+]
